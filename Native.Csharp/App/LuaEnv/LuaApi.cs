@@ -533,7 +533,7 @@ namespace Native.Csharp.App.LuaEnv
         //置群管理员
         public static int SetAnonymousStatus(long groupId, bool isOpen) => Common.CqApi.SetAnonymousStatus(groupId, isOpen);
         //置群匿名设置
-        public static int SetGroupMemberRemove(long groupId, long qqId, bool notAccept) => Common.CqApi.SetGroupMemberRemove(groupId, qqId, notAccept);
+        public static int SetGroupMemberRemove(long groupId, long qqId, bool notAccept=false) => Common.CqApi.SetGroupMemberRemove(groupId, qqId, notAccept);
         //置群员移除
         public static int SetDiscussExit(long discussId) => Common.CqApi.SetDiscussExit(discussId);
         //置讨论组退出
