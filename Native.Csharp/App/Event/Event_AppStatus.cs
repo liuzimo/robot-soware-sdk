@@ -68,7 +68,7 @@ namespace Native.Csharp.App.Event
             //第一次启动，clone下来整个项目
             Task.Run(() => {
                 string gitPath = Common.AppDirectory;
-                if (Repository.IsValid(gitPath))
+                if (Directory.Exists(gitPath + "lua"))
                     return;//已存在工程，不用再初始化了
                 Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Warning, "第一次启动的提示", "正在下载初始脚本，请稍后");
                 try
