@@ -117,10 +117,8 @@ namespace Native.Csharp.App.LuaEnv
             //摆放图片
             lua.RegisterFunction("apiGetDir", null, typeof(LuaApi).GetMethod("GetDir"));
             //保存并获取图片路径
-
             lua.RegisterFunction("apiGetImagePath", null, typeof(LuaApi).GetMethod("GetImagePath"));
             //获取qq消息中图片的网址
-
             lua.RegisterFunction("apiHttpDownload", null, typeof(LuaApi).GetMethod("HttpDownload"));
             //下载文件
             lua.RegisterFunction("apiHttpGet", null, typeof(LuaApi).GetMethod("HttpGet"));
@@ -143,17 +141,18 @@ namespace Native.Csharp.App.LuaEnv
             //获取字符串ascii编码的hex串
             lua.RegisterFunction("apiSetTimerScriptWait", null, typeof(LuaApi).GetMethod("SetTimerScriptWait"));
             //设置定时脚本运行间隔时间
-
             lua.RegisterFunction("apiGetHardDiskFreeSpace", null, typeof(Tools).GetMethod("GetHardDiskFreeSpace"));
             //获取指定驱动器的剩余空间总大小(单位为MB)
             lua.RegisterFunction("apiMD5Encrypt", null, typeof(Tools).GetMethod("MD5Encrypt"));
             //计算MD5
-
             lua.RegisterFunction("apiTcpSend", null, typeof(TcpServer).GetMethod("Send"));
             //发送tcp广播数据
-
             lua.RegisterFunction("apiSandBox", null, typeof(LuaEnv).GetMethod("RunSandBox"));
             //沙盒环境
+            lua.RegisterFunction("apiOrderSearch", null, typeof(LuaApi).GetMethod("OrderSearch"));
+            //单号识别
+            lua.RegisterFunction("apiNowSearch", null, typeof(LuaApi).GetMethod("NowSearch"));
+            //快递查询
 
             ///////////////
             //XML操作接口//

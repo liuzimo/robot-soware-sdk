@@ -540,6 +540,15 @@ namespace Native.Csharp.App.LuaEnv
         public static int SetGroupExit(long groupId) => Common.CqApi.SetGroupExit(groupId);
         // 置群退出
 
+
+        /// <summary>
+        /// 群内和QQ同时发送延时消息
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <param name="qqId"></param>
+        /// <param name="m1"></param>
+        /// <param name="m2"></param>
+        /// <param name="time"></param>
         public static void SendDelyMessage(long groupId, long qqId, string m1, string m2, int time)
         {
             int start = Environment.TickCount;
@@ -549,6 +558,31 @@ namespace Native.Csharp.App.LuaEnv
             Common.CqApi.SendGroupMessage(groupId, m1);//调用处理事件
             Common.CqApi.SendPrivateMessage(qqId, m2);//调用处理事件
         }
-        //发送延时消息
+
+        /// <summary>
+        /// 快递即时查询
+        /// </summary>
+        /// <param name="shipper">快递公司标识</param>
+        /// <param name="logistic">快递号</param>
+        /// <param name="order">订单号</param>
+        /// <param name="EBusinessID">用户id</param>
+        /// <param name="AppKey">密钥</param>
+        public static string NowSearch(string shipper ,string logistic, string order = "", string EBusinessID = "1577459", string AppKey = "c50d7be3-298a-4cb5-b765-cda725b9d728")
+        {
+            KdApiSearch kd = new KdApiSearch();
+            return kd.getOrderTracesByJson(shipper,logistic, order, EBusinessID , AppKey );
+        }
+
+        /// <summary>
+        /// Json方式  单号识别
+        /// </summary>
+        /// <param name="logistic">快递号</param>
+        /// <param name="EBusinessID">用户id</param>
+        /// <param name="AppKey">密钥</param>
+        public static string OrderSearch(string logistic,string EBusinessID = "1577459", string AppKey = "c50d7be3-298a-4cb5-b765-cda725b9d728")
+        {
+            KdApiSearch kd = new KdApiSearch();
+            return kd.orderTracesSubByJson(logistic, EBusinessID, AppKey);
+        }
     }
 }

@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\Common.cs" />
+    <Compile Include="App\LuaEnv\KdApiSearch.cs" />
     <Compile Include="App\tool\NativeConvert.cs" />
     <Compile Include="App\Core\LibExport.cs">
       <AutoGen>True</AutoGen>
