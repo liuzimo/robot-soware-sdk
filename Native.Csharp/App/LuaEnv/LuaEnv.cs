@@ -136,7 +136,9 @@ namespace Native.Csharp.App.LuaEnv
             lua.RegisterFunction("apiGetVar", null, typeof(LuaApi).GetMethod("GetVar"));
             //取出某缓存的值
             lua.RegisterFunction("apiDirectoryList", null, typeof(LuaApi).GetMethod("DirectoryList"));
-            //获取xml目录文件夹列表
+            //获取xml目录下的文件夹列表
+            lua.RegisterFunction("apiFileList", null, typeof(LuaApi).GetMethod("FileList"));
+            //获取xml目录下的文件列表
             lua.RegisterFunction("apiGetAsciiHex", null, typeof(LuaApi).GetMethod("GetAsciiHex"));
             //获取字符串ascii编码的hex串
             lua.RegisterFunction("apiSetTimerScriptWait", null, typeof(LuaApi).GetMethod("SetTimerScriptWait"));
@@ -145,14 +147,20 @@ namespace Native.Csharp.App.LuaEnv
             //获取指定驱动器的剩余空间总大小(单位为MB)
             lua.RegisterFunction("apiMD5Encrypt", null, typeof(Tools).GetMethod("MD5Encrypt"));
             //计算MD5
-            lua.RegisterFunction("apiTcpSend", null, typeof(TcpServer).GetMethod("Send"));
-            //发送tcp广播数据
             lua.RegisterFunction("apiSandBox", null, typeof(LuaEnv).GetMethod("RunSandBox"));
             //沙盒环境
             lua.RegisterFunction("apiOrderSearch", null, typeof(LuaApi).GetMethod("OrderSearch"));
             //单号识别
             lua.RegisterFunction("apiNowSearch", null, typeof(LuaApi).GetMethod("NowSearch"));
             //快递查询
+            lua.RegisterFunction("apiOrderSub", null, typeof(LuaApi).GetMethod("OrderSub"));
+            //快递订阅
+            lua.RegisterFunction("apiservice", null, typeof(TcpSer).GetMethod("service"));
+            //开启tcp服务器
+            lua.RegisterFunction("apiclient", null, typeof(TcpSer).GetMethod("client"));
+            //连接tcp服务器
+            lua.RegisterFunction("apiListenStart", null, typeof(HttpListenerPostParaHelper).GetMethod("ListenStart"));
+            //开启httprequest监听
 
             ///////////////
             //XML操作接口//

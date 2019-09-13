@@ -346,24 +346,44 @@ namespace Native.Csharp.App.LuaEnv
                 return "";
         }
         /// <summary>
-        /// 获取字符串ascii编码的hex串
+        /// 获取xml下面的文件夹列表
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="p">路径</param>
         /// <returns></returns>
         public static ArrayList DirectoryList(String p)
         {
             ArrayList array = new ArrayList();
-            String url = Common.AppDirectory + "xml/";
+            String url = Common.AppDirectory + "xml\\";
             if (p != "")
             {
-                url = Common.AppDirectory + "xml/" + p + "/";
+                url = Common.AppDirectory + "xml\\" + p + "\\";
             }
             //获取文件地址，此时返回的文件夹包含文件夹的整体路径
             String[] directorieStrings = Directory.GetDirectories(url);
             //如果需要获取文件夹的名称集合
-            String[] dlist = directorieStrings.Select(d => d.Substring(d.LastIndexOf('/') + 1 )).ToArray();
+            String[] dlist = directorieStrings.Select(d => d.Substring(d.LastIndexOf('\\') + 1 )).ToArray();
             array.Add(dlist.Length-1);
             array.Add(dlist);
+            return array;
+        }
+        
+        /// <summary>
+         /// 获取xml下面的文件夹列表
+         /// </summary>
+         /// <param name="p">路径</param>
+         /// <returns></returns>
+        public static ArrayList FileList(String p)
+        {
+            ArrayList array = new ArrayList();
+            String url = Common.AppDirectory + "xml\\";
+            if (p != "")
+            {
+                url = Common.AppDirectory + "xml\\" + p + "\\";
+            }
+            var files = Directory.GetFiles(url, "*.xml").Select(d => d.Substring(d.LastIndexOf('\\') + 1)).ToArray(); ;
+
+            array.Add(files.Length - 1);
+            array.Add(files);
             return array;
         }
 
@@ -562,27 +582,43 @@ namespace Native.Csharp.App.LuaEnv
         /// <summary>
         /// 快递即时查询
         /// </summary>
-        /// <param name="shipper">快递公司标识</param>
-        /// <param name="logistic">快递号</param>
-        /// <param name="order">订单号</param>
+        /// <param name="shippercode">快递公司标识</param>
+        /// <param name="logisticode">快递号</param>
         /// <param name="EBusinessID">用户id</param>
         /// <param name="AppKey">密钥</param>
-        public static string NowSearch(string shipper ,string logistic, string order = "", string EBusinessID = "1577459", string AppKey = "c50d7be3-298a-4cb5-b765-cda725b9d728")
+        public static string NowSearch(string shippercode, string logisticode, string EBusinessID = "1577459", string AppKey = "c50d7be3-298a-4cb5-b765-cda725b9d728")
         {
-            KdApiSearch kd = new KdApiSearch();
-            return kd.getOrderTracesByJson(shipper,logistic, order, EBusinessID , AppKey );
+            ExpressApi kd = new ExpressApi();
+            return kd.getOrderTracesByJson(shippercode, logisticode, EBusinessID , AppKey );
         }
 
         /// <summary>
         /// Json方式  单号识别
         /// </summary>
-        /// <param name="logistic">快递号</param>
+        /// <param name="logisticode">快递号</param>
         /// <param name="EBusinessID">用户id</param>
         /// <param name="AppKey">密钥</param>
-        public static string OrderSearch(string logistic,string EBusinessID = "1577459", string AppKey = "c50d7be3-298a-4cb5-b765-cda725b9d728")
+        public static string OrderSearch(string logisticode, string EBusinessID = "1577459", string AppKey = "c50d7be3-298a-4cb5-b765-cda725b9d728")
         {
-            KdApiSearch kd = new KdApiSearch();
-            return kd.orderTracesSubByJson(logistic, EBusinessID, AppKey);
+            ExpressApi kd = new ExpressApi();
+            return kd.orderTracesSubByJson(logisticode, EBusinessID, AppKey);
+        }
+
+
+        /// <summary>
+        /// Json方式  物流信息订阅
+        /// </summary>
+        /// <returns></returns>
+        public static string OrderSub(  string shippercode, string logisticode, 
+                                        string recname, string recphone,string recpro,string recity,string recexp,string recaddr,
+                                        string sename, string sephone, string secpro, string secity, string secexp, string secaddr,
+                                        string EBusinessID = "1577459", string AppKey = "c50d7be3-298a-4cb5-b765-cda725b9d728")
+        {
+            ExpressApi kd = new ExpressApi();
+            return kd.orderTracesSubByJson(  shippercode, logisticode,
+                                             recname, recphone, recpro, recity, recexp, recaddr,
+                                             sename,  sephone,  secpro, secity, secexp, secaddr,
+                                             EBusinessID, AppKey );
         }
     }
 }

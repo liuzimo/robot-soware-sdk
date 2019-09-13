@@ -86,8 +86,8 @@ namespace Native.Csharp.App.LuaEnv
                           select ee;
             XElement[] result = element.ToArray();
             foreach (XElement mm in result)
-                ansall = ansall + mm.Element(valueName).Value + "\r\n";
-            ansall = ansall + "一共有" + element.Count() + "条回复";
+                ansall = ansall + mm.Element(valueName).Value + "\n\n";
+            ansall = ansall + "一共有" + element.Count() + "条记录";
             return ansall;
         }
 

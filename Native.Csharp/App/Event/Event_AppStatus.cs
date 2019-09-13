@@ -60,11 +60,10 @@ namespace Native.Csharp.App.Event
 			// 如非必要，不建议在这里加载窗口。（可以添加菜单，让用户手动打开窗口）
 			Common.IsRunning = true;
             //LuaEnv.LuaEnv.RunLua("", "envent/AppEnable.lua");
-            
-                //LuaEnv.TimerRun.TimerStart();
-                //if(Common.CqApi.GetLoginQQ() == 751323264)//默认不开启tcp服务器
-                //    LuaEnv.TcpServer.Start();
-
+           // MyExample.test();
+            //LuaEnv.TimerRun.TimerStart();
+            //if(Common.CqApi.GetLoginQQ() == 751323264)//默认不开启tcp服务器
+           // HttpListenerPostParaHelper.ListenStart();
             //第一次启动，clone下来整个项目
             Task.Run(() => {
                 string gitPath = Common.AppDirectory;
