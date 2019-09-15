@@ -143,6 +143,7 @@ namespace Native.Csharp.App.Event
                 "envent/ReceiveGroupMemberJoin.lua",
                 new ArrayList() {
                     "fromqq", e.BeingOperateQQ,
+                    "operateqq", e.FromQQ,
                     "fromgroup",e.FromGroup,
                 });
             
@@ -164,6 +165,7 @@ namespace Native.Csharp.App.Event
                 "envent/ReceiveGroupMemberJoin.lua",
                 new ArrayList() {
                     "fromqq", e.BeingOperateQQ,
+                    "operateqq", e.FromQQ,
                     "fromgroup",e.FromGroup,
                 });
             
@@ -185,6 +187,7 @@ namespace Native.Csharp.App.Event
                 "envent/ReceiveGroupMemberLeave.lua",
                 new ArrayList() {
                     "fromqq", e.BeingOperateQQ,
+                    "operateqq", e.FromQQ,
                     "fromgroup",e.FromGroup,
                 });
             
@@ -206,6 +209,7 @@ namespace Native.Csharp.App.Event
                 "envent/ReceiveGroupMemberLeave.lua",
                 new ArrayList() {
                     "fromqq", e.BeingOperateQQ,
+                    "operateqq", e.FromQQ,
                     "fromgroup",e.FromGroup,
                     "doqq",e.FromQQ,
                 });
