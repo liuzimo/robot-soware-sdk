@@ -161,6 +161,9 @@ namespace Native.Csharp.App.LuaEnv
             //连接tcp服务器
             lua.RegisterFunction("apiListenStart", null, typeof(HttpListenerPostParaHelper).GetMethod("ListenStart"));
             //开启httprequest监听
+            lua.RegisterFunction("apiTimerStart", null, typeof(TimerRun).GetMethod("TimerStart"));
+            //开启循环任务
+
 
             ///////////////
             //XML操作接口//

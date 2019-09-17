@@ -67,12 +67,15 @@ namespace Native.Csharp.App.Event
             //第一次启动，clone下来整个项目
             Task.Run(() => {
                 string gitPath = Common.AppDirectory;
-                if (Directory.Exists(gitPath + "lua"))
+                if (Directory.Exists(gitPath + "lua\\"))
                     return;//已存在工程，不用再初始化了
                 Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Warning, "第一次启动的提示", "正在下载初始脚本，请稍后");
                 try
                 {
                     Repository.Clone("https://github.com/liuzimo/robot-soware-lua.git", gitPath);
+
+                    Tools.CopyDirectory(gitPath + "appdata\\lua\\", gitPath + "lua\\");
+                    Tools.CopyDirectory(gitPath + "appdata\\xml\\", gitPath + "xml\\");
                 }
                 catch
                 {

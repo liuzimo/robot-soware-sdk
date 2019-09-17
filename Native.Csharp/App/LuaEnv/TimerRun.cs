@@ -88,8 +88,8 @@ namespace Native.Csharp.App.LuaEnv
                     {
                         Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Info, "lua脚本更新检查", "检测到更新内容，正在替换脚本\r\n" +
                             "注意可能会出现消息报错，无视就好");
-                        Directory.Delete(Common.AppDirectory + "lua", true);
-                        Tools.CopyDirectory(gitPath + "appdata/lua", Common.AppDirectory + "lua");
+                        Directory.Delete(gitPath + "lua\\", true);
+                        Tools.CopyDirectory(gitPath + "appdata\\lua\\", gitPath + "lua\\");
                         Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Info, "lua脚本更新检查", "脚本更新完成！");
                     }
                     else
