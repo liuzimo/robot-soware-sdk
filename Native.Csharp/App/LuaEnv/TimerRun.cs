@@ -11,8 +11,8 @@ namespace Native.Csharp.App.LuaEnv
     class TimerRun
     {
         private static bool start = false;
-        public static int luaWait = 60;//间隔多少秒执行一次
-        private static uint count = 60;
+        public static int luaWait = 3600;//间隔多少秒执行一次
+        private static uint count = 3600;
         public static void TimerStart()
         {
             if (start)
@@ -43,11 +43,11 @@ namespace Native.Csharp.App.LuaEnv
             {
                 count = 0;
                 LuaEnv.RunLua("", "envent/TimerMinute.lua");
-            }
+            //}
 
-            //检查升级
-            if (intSecond == 0 && intMinute==0 && intHour == 3)
-            {
+            ////检查升级
+            //if (intSecond == 0 && intMinute==0 && intHour == 3)
+            //{
                 //检查是否开启了检查更新
                 if (XmlApi.xml_get("","settings", "autoUpdate").ToUpper() != "TRUE")
                     return;
