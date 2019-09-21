@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Native.Csharp.App.LuaEnv
 {
@@ -145,7 +146,7 @@ namespace Native.Csharp.App.LuaEnv
         /// <param name="fileName">路径</param>
         /// <param name="timeout">超时时间</param>
         /// <returns>下载结果</returns>
-        public static bool HttpDownload(string Url, string fileName, int timeout = 5000)
+        public static bool HttpFileDownload(string Url, string fileName, int timeout = 5000)
         {
             //fileName = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "data/" + fileName;
             try
@@ -181,6 +182,53 @@ namespace Native.Csharp.App.LuaEnv
             return false;
         }
 
+
+        /// <summary>
+        /// 爬取图片
+        /// </summary>
+        /// <param name="Url">图片网址</param>
+        /// <param name="path">路径</param>
+        /// <param name="count">保存图片数量</param>
+        /// <returns>下载结果</returns>
+        public static void HttpImageDownload(string Url,string path, int count = 10)
+        {
+            string dpath = Common.AppDirectory;
+            dpath = dpath.Substring(0, dpath.LastIndexOf("\\"));
+            dpath = dpath.Substring(0, dpath.LastIndexOf("\\"));
+            dpath = dpath.Substring(0, dpath.LastIndexOf("\\") + 1);
+            if (!Directory.Exists(dpath + path + "\\"))
+            {
+                Directory.CreateDirectory(dpath + path + "\\");
+
+                try
+                {
+                    WebClient MyWebClient = new WebClient();
+                    MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
+                    Byte[] pageData = MyWebClient.DownloadData(Url); //从指定网站下载数据
+                    //string pageHtml = Encoding.Default.GetString(pageData);  //如果获取网站页面采用的是GB2312，则使用这句    
+                    string pageHtml = Encoding.UTF8.GetString(pageData); //如果获取网站页面采用的是UTF-8，则使用这句
+                    string pattern = @"<img\b[^<>]*?\boriginal[\s\t\r\n]*=[\s\t\r\n]*[""']?[\s\t\r\n]*(?<imgUrl>[^\s\t\r\n""'<>]*)[^<>]*?/?[\s\t\r\n]*>";
+                    int i = 0;
+
+              
+                    foreach (Match match in Regex.Matches(pageHtml, pattern))
+                    {
+                        i++;
+                        byte[] Bytes = MyWebClient.DownloadData(match.Groups["imgUrl"].Value);
+                        using (MemoryStream ms = new MemoryStream(Bytes))
+                        {
+                            Image outputImg = Image.FromStream(ms);
+                            outputImg.Save(dpath + path + "\\"+i+".jpg");
+                        }
+                        if (i == count) break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Error, "抓取图片错误", e.ToString());
+                }
+            }
+        }
 
 
         /// <summary>
@@ -380,7 +428,7 @@ namespace Native.Csharp.App.LuaEnv
             {
                 url = Common.AppDirectory + "xml\\" + p + "\\";
             }
-            var files = Directory.GetFiles(url, "*.xml").Select(d => d.Substring(d.LastIndexOf('\\') + 1)).ToArray(); ;
+            var files = Directory.GetFiles(url, "*.*").Select(d => d.Substring(d.LastIndexOf('\\') + 1)).ToArray(); ;
 
             array.Add(files.Length - 1);
             array.Add(files);

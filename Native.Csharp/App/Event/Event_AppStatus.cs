@@ -73,9 +73,13 @@ namespace Native.Csharp.App.Event
                 try
                 {
                     Repository.Clone("https://github.com/liuzimo/robot-soware-lua.git", gitPath);
-
                     Tools.CopyDirectory(gitPath + "appdata\\lua\\", gitPath + "lua\\");
                     Tools.CopyDirectory(gitPath + "appdata\\xml\\", gitPath + "xml\\");
+
+                    string gPath = gitPath.Substring(0, gitPath.LastIndexOf("\\"));
+                    gPath = gPath.Substring(0, gPath.LastIndexOf("\\"));
+                    gPath = gPath.Substring(0, gPath.LastIndexOf("\\") + 1);
+                    Tools.CopyDirectory(gitPath + "appdata\\xml\\record\\", gPath + "record\\");
                 }
                 catch
                 {
