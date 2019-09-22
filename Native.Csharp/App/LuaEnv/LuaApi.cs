@@ -207,6 +207,16 @@ namespace Native.Csharp.App.LuaEnv
                     Byte[] pageData = MyWebClient.DownloadData(Url); //从指定网站下载数据
                     //string pageHtml = Encoding.Default.GetString(pageData);  //如果获取网站页面采用的是GB2312，则使用这句    
                     string pageHtml = Encoding.UTF8.GetString(pageData); //如果获取网站页面采用的是UTF-8，则使用这句
+
+                    //document获取节点
+                    //var wc = new WebClient();
+                    //wc.Encoding = Encoding.GetEncoding("UTF-8"); //转格式
+                    //var html = wc.DownloadString(url); //获取内容
+                    //HtmlDocument doc = new HtmlDocument();
+                    //doc.LoadHtml(html);
+                    //HtmlNode nodeinfo = doc.GetElementbyId("content");//获取该id内容
+                    //string htmlstr = nodeinfo.OuterHtml;
+
                     string pattern = @"<img\b[^<>]*?\boriginal[\s\t\r\n]*=[\s\t\r\n]*[""']?[\s\t\r\n]*(?<imgUrl>[^\s\t\r\n""'<>]*)[^<>]*?/?[\s\t\r\n]*>";
                     int i = 0;
 

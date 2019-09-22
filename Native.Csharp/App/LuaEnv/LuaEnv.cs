@@ -165,6 +165,12 @@ namespace Native.Csharp.App.LuaEnv
             //开启httprequest监听
             lua.RegisterFunction("apiTimerStart", null, typeof(TimerRun).GetMethod("TimerStart"));
             //开启循环任务
+            lua.RegisterFunction("apiGeneralBasic", null, typeof(BaiDuApi).GetMethod("GeneralBasic"));
+            //本地图片文字识别
+            lua.RegisterFunction("apiGeneralBasicUrl", null, typeof(BaiDuApi).GetMethod("GeneralBasicUrl"));
+            //链接图片文字识别
+            lua.RegisterFunction("apiAdvancedGeneral", null, typeof(BaiDuApi).GetMethod("AdvancedGeneral"));
+            //图像识别
 
 
             ///////////////
