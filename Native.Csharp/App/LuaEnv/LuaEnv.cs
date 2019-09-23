@@ -173,6 +173,8 @@ namespace Native.Csharp.App.LuaEnv
             //图像识别
             lua.RegisterFunction("apiQREncode", null, typeof(QRCode).GetMethod("QREncode"));
             //二维码生成
+            lua.RegisterFunction("apiQRDecode", null, typeof(QRCode).GetMethod("QRDecode"));
+            //二维码解码
             lua.RegisterFunction("apiCombinImage", null, typeof(QRCode).GetMethod("CombinImage"));
             //二维码logo生成
             

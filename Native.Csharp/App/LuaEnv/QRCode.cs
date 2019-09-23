@@ -1,4 +1,5 @@
 ﻿using MessagingToolkit.QRCode.Codec;
+using MessagingToolkit.QRCode.Codec.Data;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -37,6 +38,7 @@ namespace Native.Csharp.App.LuaEnv
                 g.DrawImage(pbImg, width, width);
                 g.Dispose();
                 bmp.Save(dpath + "image\\qr.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                return 1;
 
             }
             catch (Exception e)
@@ -44,11 +46,25 @@ namespace Native.Csharp.App.LuaEnv
                 Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Error, "二维码生成错误", e.ToString());
                 return -1;
             }
-            return 1;
         }
-        public static void QRDecode()
+        public static string QRDecode(string imagename)
         {
-
+            try { 
+                QRCodeDecoder qrCodeDecoder = new QRCodeDecoder();
+                string dpath = Common.AppDirectory;
+                dpath = dpath.Substring(0, dpath.LastIndexOf("\\"));
+                dpath = dpath.Substring(0, dpath.LastIndexOf("\\"));
+                dpath = dpath.Substring(0, dpath.LastIndexOf("\\") + 1);
+                Bitmap map = new Bitmap(dpath + "image\\" + imagename);
+                QRCodeBitmapImage imgmap = new QRCodeBitmapImage(map);
+                String decodedString = qrCodeDecoder.Decode(imgmap);
+                return decodedString;
+            }
+            catch (Exception e)
+            {
+                Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Error, "二维码解析错误", e.ToString());
+                return "";
+            }
         }
 
 
