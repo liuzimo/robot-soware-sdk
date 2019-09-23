@@ -171,7 +171,11 @@ namespace Native.Csharp.App.LuaEnv
             //链接图片文字识别
             lua.RegisterFunction("apiAdvancedGeneral", null, typeof(BaiDuApi).GetMethod("AdvancedGeneral"));
             //图像识别
-
+            lua.RegisterFunction("apiQREncode", null, typeof(QRCode).GetMethod("QREncode"));
+            //二维码生成
+            lua.RegisterFunction("apiCombinImage", null, typeof(QRCode).GetMethod("CombinImage"));
+            //二维码logo生成
+            
 
             ///////////////
             //XML操作接口//
