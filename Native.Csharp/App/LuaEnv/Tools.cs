@@ -159,7 +159,7 @@ namespace Native.Csharp.App.LuaEnv
         /// </summary>
         /// <param name="sourceDirPath">源文件夹目录</param>
         /// <param name="saveDirPath">指定文件夹目录</param>
-        public static void CopyDirectory(string sourceDirPath, string saveDirPath)
+        public static void CopyDirectory(string sourceDirPath, string saveDirPath,bool colver=true)
         {
             try
             {
@@ -173,7 +173,7 @@ namespace Native.Csharp.App.LuaEnv
                     string pFilePath = saveDirPath + "\\" + Path.GetFileName(file);
                     if (File.Exists(pFilePath))
                         continue;
-                    File.Copy(file, pFilePath, true);
+                    File.Copy(file, pFilePath, colver);
                 }
 
                 string[] dirs = Directory.GetDirectories(sourceDirPath);
