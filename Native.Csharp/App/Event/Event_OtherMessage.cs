@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Native.Csharp.App.Model;
-using Native.Csharp.App.Interface;
-using Native.Csharp.Sdk.Cqp;
+﻿
+using Native.Csharp.Sdk.Cqp.EventArgs;
+using Native.Csharp.Sdk.Cqp.Interface;
 
 namespace Native.Csharp.App.Event
 {
@@ -17,14 +13,14 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveOnlineStatusMessage (object sender, PrivateMessageEventArgs e)
+		public void ReceiveOnlineStatusMessage (object sender, CqPrivateMessageEventArgs e)
 		{
 			// 本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
 			// 这里处理消息
 
 
 
-			e.Handled = false;  // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
+			e.Handler = false;  // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
 		}
 		#endregion
 	}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Native.Csharp.App.Interface
+namespace Native.Csharp.Sdk.Cqp.Interface
 {
 	/// <summary>
 	/// 酷Q 用户事件处理接口
@@ -15,7 +15,7 @@ namespace Native.Csharp.App.Interface
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		void OpenConsoleWindow (object sender, EventArgs e);
+		void OpenConsoleWindow (object sender, System.EventArgs e);
 
 		/*
 		 *	关于导出方法: 

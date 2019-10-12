@@ -510,7 +510,7 @@ namespace Native.Csharp.App.LuaEnv
             // 当地时区
             System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
 
-            Sdk.Cqp.Model.GroupMember m = Common.CqApi.GetMemberInfo(g, q, a);
+            Sdk.Cqp.Model.GroupMemberInfo m = Common.CqApi.GetMemberInfo(g, q, a);
             t["Age"] = m.Age;
             t["Area"] = m.Area;
             t["Card"] = m.Card;
@@ -530,7 +530,7 @@ namespace Native.Csharp.App.LuaEnv
             // 当地时区
             System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
 
-            List<Sdk.Cqp.Model.GroupMember> memberInfos = Common.CqApi.GetMemberList(g);
+            List<Sdk.Cqp.Model.GroupMemberInfo> memberInfos = Common.CqApi.GetMemberList(g);
 
             ArrayList td = new ArrayList();
             ArrayList ts = new ArrayList();
@@ -557,7 +557,7 @@ namespace Native.Csharp.App.LuaEnv
         //获取全部群成员信息
         public static ArrayList GetGroupList()
         {
-            List<Sdk.Cqp.Model.Group> groupInfos = Common.CqApi.GetGroupList();
+            List<Sdk.Cqp.Model.GroupInfo> groupInfos = Common.CqApi.GetGroupList();
 
             ArrayList td = new ArrayList();
             ArrayList ts = new ArrayList();

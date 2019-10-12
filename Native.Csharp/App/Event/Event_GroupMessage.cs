@@ -1,11 +1,6 @@
-﻿using Native.Csharp.Sdk.Cqp;
-using Native.Csharp.Sdk.Cqp.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Native.Csharp.App.Model;
-using Native.Csharp.App.Interface;
+﻿
+using Native.Csharp.Sdk.Cqp.EventArgs;
+using Native.Csharp.Sdk.Cqp.Interface;
 using System.Collections;
 
 namespace Native.Csharp.App.Event
@@ -19,19 +14,19 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveGroupMessage (object sender, GroupMessageEventArgs e)
+		public void ReceiveGroupMessage (object sender, CqGroupMessageEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
             // 这里处理消息
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceiveGroupMessage.lua",
                 new ArrayList() {
                     "fromqq", e.FromQQ,
                     "fromgroup",e.FromGroup,
-                    "message",e.Msg,
+                    "message",e.Message,
                     "id",e.MsgId,
-                    "fromAnonymous",e.IsAnonymousMsg,
+                    "fromAnonymous",e.IsAnonymous,
                 });
 
 		}
@@ -42,16 +37,16 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveGroupPrivateMessage (object sender, PrivateMessageEventArgs e)
+		public void ReceiveGroupPrivateMessage (object sender, CqPrivateMessageEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
             // 这里处理消息
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceivePrivateMessage.lua",
                 new ArrayList() {
                     "fromqq", e.FromQQ,
-                    "message",e.Msg,
+                    "message",e.Message,
                     "id",e.MsgId,
                 });
 
@@ -64,13 +59,13 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveGroupFileUpload (object sender, FileUploadMessageEventArgs e)
+		public void ReceiveGroupFileUpload (object sender, CqGroupFileUploadEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
             // 这里处理消息
             // 关于文件信息, 触发事件时已经转换完毕, 请直接使用
 
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceiveGroupFileUpload.lua",
                 new ArrayList() {
@@ -90,11 +85,11 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveGroupManageIncrease (object sender, GroupManageAlterEventArgs e)
+		public void ReceiveGroupManageIncrease (object sender, CqGroupManageChangeEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
             // 这里处理消息
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceiveGroupManage.lua",
                 new ArrayList() {
@@ -112,11 +107,11 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveGroupManageDecrease (object sender, GroupManageAlterEventArgs e)
+		public void ReceiveGroupManageDecrease (object sender, CqGroupManageChangeEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
             // 这里处理消息
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceiveGroupManage.lua",
                 new ArrayList() {
@@ -134,11 +129,11 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveGroupMemberJoin (object sender, GroupMemberAlterEventArgs e)
+		public void ReceiveGroupMemberJoin (object sender, CqGroupMemberIncreaseEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
             // 这里处理消息
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceiveGroupMemberJoin.lua",
                 new ArrayList() {
@@ -156,11 +151,11 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveGroupMemberInvitee (object sender, GroupMemberAlterEventArgs e)
+		public void ReceiveGroupMemberInvitee (object sender, CqGroupMemberIncreaseEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用, 请注意使用对象等需要初始化(ConIntialize, CoUninitialize).
             // 这里处理消息
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceiveGroupMemberJoin.lua",
                 new ArrayList() {
@@ -178,11 +173,11 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveGroupMemberLeave (object sender, GroupMemberAlterEventArgs e)
+		public void ReceiveGroupMemberLeave (object sender, CqGroupMemberDecreaseEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用, 请注意使用对象等需要初始化(ConIntialize, CoUninitialize).
             // 这里处理消息
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceiveGroupMemberLeave.lua",
                 new ArrayList() {
@@ -200,11 +195,11 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveGroupMemberRemove (object sender, GroupMemberAlterEventArgs e)
+		public void ReceiveGroupMemberRemove (object sender, CqGroupMemberDecreaseEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用, 请注意使用对象等需要初始化(ConIntialize, CoUninitialize).
             // 这里处理消息
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceiveGroupMemberLeave.lua",
                 new ArrayList() {
@@ -223,17 +218,17 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveGroupAddApply (object sender, GroupAddRequestEventArgs e)
+		public void ReceiveGroupAddApply (object sender, CqAddGroupRequestEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用, 请注意使用对象等需要初始化(ConIntialize, CoUninitialize).
             // 这里处理消息
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceiveGroupAddApply.lua",
                 new ArrayList() {
                     "fromqq", e.FromQQ,
-                    "message",e.AppendMsg,
-                    "tag",e.Tag,
+                    "message",e.Message,
+                    "tag",e.ResponseFlag,
                     "fromgroup",e.FromGroup,
                 });
 
@@ -246,17 +241,17 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveGroupAddInvitee (object sender, GroupAddRequestEventArgs e)
+		public void ReceiveGroupAddInvitee (object sender, CqAddGroupRequestEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用, 请注意使用对象等需要初始化(ConIntialize, CoUninitialize).
             // 这里处理消息
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceiveGroupAddInvitee.lua",
                 new ArrayList() {
                     "fromqq", e.FromQQ,
-                    "message",e.AppendMsg,
-                    "tag",e.Tag,
+                    "message",e.Message,
+                    "tag",e.ResponseFlag,
                     "fromgroup",e.FromGroup,
                 });
 

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Native.Csharp.App.Model;
+﻿
+using Native.Csharp.Sdk.Cqp.EventArgs;
 
-namespace Native.Csharp.App.Interface
+namespace Native.Csharp.Sdk.Cqp.Interface
 {
 	/// <summary>
 	/// 酷Q 其它事件处理接口
@@ -17,6 +14,6 @@ namespace Native.Csharp.App.Interface
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		void ReceiveOnlineStatusMessage (object sender, PrivateMessageEventArgs e);
+		void ReceiveOnlineStatusMessage (object sender, CqPrivateMessageEventArgs e);
 	}
 }

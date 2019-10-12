@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using LibGit2Sharp;
-using Native.Csharp.App.Interface;
 using Native.Csharp.App.LuaEnv;
-using Native.Csharp.Sdk.Cqp;
+using Native.Csharp.Sdk.Cqp.Interface;
 
 namespace Native.Csharp.App.Event
 {

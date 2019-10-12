@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Native.Csharp.App.Interface
+namespace Native.Csharp.Sdk.Cqp.Interface
 {
 	/// <summary>
 	/// 酷Q 应用初始化接口
@@ -16,7 +16,7 @@ namespace Native.Csharp.App.Interface
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		void CqStartup (object sender, EventArgs e);
+		void CqStartup (object sender, System.EventArgs e);
 
 		/// <summary>
 		/// Type=1002 酷Q退出<para/>
@@ -24,7 +24,7 @@ namespace Native.Csharp.App.Interface
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		void CqExit (object sender, EventArgs e);
+		void CqExit (object sender, System.EventArgs e);
 
 		/// <summary>
 		/// Type=1003 应用被启用<para/>
@@ -32,7 +32,7 @@ namespace Native.Csharp.App.Interface
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		void AppEnable (object sender, EventArgs e);
+		void AppEnable (object sender, System.EventArgs e);
 
 		/// <summary>
 		/// Type=1004 应用被禁用<para/>
@@ -40,6 +40,6 @@ namespace Native.Csharp.App.Interface
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		void AppDisable (object sender, EventArgs e);
+		void AppDisable (object sender, System.EventArgs e);
 	}
 }

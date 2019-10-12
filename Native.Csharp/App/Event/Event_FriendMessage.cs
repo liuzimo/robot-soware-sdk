@@ -1,10 +1,6 @@
-﻿using Native.Csharp.App.Interface;
-using Native.Csharp.App.Model;
-using System;
+﻿using Native.Csharp.Sdk.Cqp.Interface;
+using Native.Csharp.Sdk.Cqp.EventArgs;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Native.Csharp.App.Event
 {
@@ -17,11 +13,11 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveFriendIncrease (object sender, FriendIncreaseEventArgs e)
+		public void ReceiveFriendIncrease (object sender, CqFriendIncreaseEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
             // 这里处理消息
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceiveFriendIncrease.lua",
                 new ArrayList() {
@@ -38,17 +34,17 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveFriendAddRequest (object sender, FriendAddRequestEventArgs e)
+		public void ReceiveFriendAddRequest (object sender, CqAddFriendRequestEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
             // 这里处理消息
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceiveFriednAddRequest.lua",
                 new ArrayList() {
                     "fromqq", e.FromQQ,
-                    "message",e.AppendMsg,
-                    "tag",e.Tag,
+                    "message",e.Message,
+                    "tag",e.ResponseFlag,
                 });
             
             //e.Handled = false;   // 关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
@@ -60,16 +56,16 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveFriendMessage (object sender, PrivateMessageEventArgs e)
+		public void ReceiveFriendMessage (object sender, CqPrivateMessageEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
             // 这里处理消息
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceivePrivateMessage.lua",
                 new ArrayList() {
                     "fromqq", e.FromQQ,
-                    "message",e.Msg,
+                    "message",e.Message,
                     "id",e.MsgId,
                 });
 			// e.Handled 相当于 原酷Q事件的返回值

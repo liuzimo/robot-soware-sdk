@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Native.Csharp.App.Model;
+﻿
+using Native.Csharp.Sdk.Cqp.EventArgs;
 
-namespace Native.Csharp.App.Interface
+namespace Native.Csharp.Sdk.Cqp.Interface
 {
 	/// <summary>
 	/// 酷Q 讨论组消息接口
@@ -17,7 +14,7 @@ namespace Native.Csharp.App.Interface
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		void ReceiveDiscussMessage (object sender, DiscussMessageEventArgs e);
+		void ReceiveDiscussMessage (object sender, CqDiscussMessageEventArgs e);
 
 		/// <summary>
 		/// Type=21 讨论组私聊消息 <para/>
@@ -25,6 +22,6 @@ namespace Native.Csharp.App.Interface
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		void ReceiveDiscussPrivateMessage (object sender, PrivateMessageEventArgs e);
+		void ReceiveDiscussPrivateMessage (object sender, CqPrivateMessageEventArgs e);
 	}
 }

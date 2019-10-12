@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Native.Csharp.App.Model;
+﻿
+using Native.Csharp.Sdk.Cqp.EventArgs;
 
-namespace Native.Csharp.App.Interface
+namespace Native.Csharp.Sdk.Cqp.Interface
 {
 	/// <summary>
 	/// 酷Q 好友消息接口
@@ -17,7 +14,7 @@ namespace Native.Csharp.App.Interface
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		void ReceiveFriendIncrease (object sender, FriendIncreaseEventArgs e);
+		void ReceiveFriendIncrease (object sender, CqFriendIncreaseEventArgs e);
 
 		/// <summary>
 		/// Type=301 收到好友添加请求<para/>
@@ -25,7 +22,7 @@ namespace Native.Csharp.App.Interface
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		void ReceiveFriendAddRequest (object sender, FriendAddRequestEventArgs e);
+		void ReceiveFriendAddRequest (object sender, CqAddFriendRequestEventArgs e);
 
 		/// <summary>
 		/// Type=21 好友消息<para/>
@@ -33,6 +30,6 @@ namespace Native.Csharp.App.Interface
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		void ReceiveFriendMessage (object sender, PrivateMessageEventArgs e);
+		void ReceiveFriendMessage (object sender, CqPrivateMessageEventArgs e);
 	}
 }

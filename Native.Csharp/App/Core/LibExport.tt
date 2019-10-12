@@ -17,8 +17,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Unity;
 using Native.Csharp.App.Event;
-using Native.Csharp.App.Model;
-using Native.Csharp.App.Interface;
+using Native.Csharp.Sdk.Cqp.EventArgs;
+using Native.Csharp.Sdk.Cqp.Interface;
 using Native.Csharp.Sdk.Cqp;
 using Native.Csharp.Sdk.Cqp.Enum;
 using Native.Csharp.Tool;
@@ -206,103 +206,103 @@ namespace Native.Csharp.App.Core
 		/// 酷Q事件: _eventPrivateMsg
 		/// <para>Type=21 私聊消息 - 好友</para>
 		/// </summary>
-		public static event EventHandler<PrivateMessageEventArgs> ReceiveFriendMessage = (sender, e) => { };
+		public static event EventHandler<CqPrivateMessageEventArgs> ReceiveFriendMessage = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventPrivateMsg
 		/// <para>Type=21 私聊消息 - 在线状态</para>
 		/// </summary>
-		public static event EventHandler<PrivateMessageEventArgs> ReceiveQnlineStatusMessage = (sender, e) => { };
+		public static event EventHandler<CqPrivateMessageEventArgs> ReceiveQnlineStatusMessage = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventPrivateMsg
 		/// <para>Type=21 私聊消息 - 群私聊</para>
 		/// </summary>
-		public static event EventHandler<PrivateMessageEventArgs> ReceiveGroupPrivateMessage = (sender, e) => { };
+		public static event EventHandler<CqPrivateMessageEventArgs> ReceiveGroupPrivateMessage = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventPrivateMsg
 		/// <para>Type=21 私聊消息 - 讨论组私聊</para>
 		/// </summary>
-		public static event EventHandler<PrivateMessageEventArgs> ReceiveDiscussPrivateMessage = (sender, e) => { };
+		public static event EventHandler<CqPrivateMessageEventArgs> ReceiveDiscussPrivateMessage = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventGroupMsg
 		/// <para>Type=2 群消息</para>
 		/// </summary>
-		public static event EventHandler<GroupMessageEventArgs> ReceiveGroupMessage = (sender, e) => { };
+		public static event EventHandler<CqGroupMessageEventArgs> ReceiveGroupMessage = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventDiscussMsg
 		/// <para>Type=4 讨论组消息</para>
 		/// </summary>
-		public static event EventHandler<DiscussMessageEventArgs> ReceiveDiscussMessage = (sender, e) => { };
+		public static event EventHandler<CqDiscussMessageEventArgs> ReceiveDiscussMessage = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventGroupUpload
 		/// <para>Type=11 群文件上传事件</para>
 		/// </summary>
-		public static event EventHandler<FileUploadMessageEventArgs> ReceiveFileUploadMessage = (sender, e) => { };
+		public static event EventHandler<CqGroupFileUploadEventArgs> ReceiveFileUploadMessage = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventSystem_GroupAdmin
 		/// <para>Type=101 群事件-管理员变动 - 群管理增加</para>
 		/// </summary>
-		public static event EventHandler<GroupManageAlterEventArgs> ReceiveManageIncrease = (sender, e) => { };
+		public static event EventHandler<CqGroupManageChangeEventArgs> ReceiveManageIncrease = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventSystem_GroupAdmin
 		/// <para>Type=101 群事件-管理员变动 - 群管理减少</para>
 		/// </summary>
-		public static event EventHandler<GroupManageAlterEventArgs> ReceiveManageDecrease = (sender, e) => { };
+		public static event EventHandler<CqGroupManageChangeEventArgs> ReceiveManageDecrease = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventSystem_GroupMemberIncrease
 		/// <para>Type=103 群事件-群成员增加 - 主动离开</para>
 		/// </summary>
-		public static event EventHandler<GroupMemberAlterEventArgs> ReceiveMemberLeave = (sender, e) => { };
+		public static event EventHandler<CqGroupMemberDecreaseEventArgs> ReceiveMemberLeave = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventSystem_GroupMemberIncrease
 		/// <para>Type=103 群事件-群成员增加 - 成员移除</para>
 		/// </summary>
-		public static event EventHandler<GroupMemberAlterEventArgs> ReceiveMemberRemove = (sender, e) => { };
+		public static event EventHandler<CqGroupMemberDecreaseEventArgs> ReceiveMemberRemove = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventSystem_GroupMemberIncrease
 		/// <para>Type=103 群事件-群成员增加 - 主动加群</para>
 		/// </summary>
-		public static event EventHandler<GroupMemberAlterEventArgs> ReceiveMemberJoin = (sender, e) => { };
+		public static event EventHandler<CqGroupMemberIncreaseEventArgs> ReceiveMemberJoin = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventSystem_GroupMemberIncrease
 		/// <para>Type=103 群事件-群成员增加 - 邀请入群</para>
 		/// </summary>
-		public static event EventHandler<GroupMemberAlterEventArgs> ReceiveMemberInvitee = (sender, e) => { };
+		public static event EventHandler<CqGroupMemberIncreaseEventArgs> ReceiveMemberInvitee = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventFriend_Add
 		/// <para>Type=201 好友事件-好友已添加</para>
 		/// </summary>
-		public static event EventHandler<FriendIncreaseEventArgs> ReceiveFriendIncrease = (sender, e) => { };
+		public static event EventHandler<CqFriendIncreaseEventArgs> ReceiveFriendIncrease = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventRequest_AddFriend
 		/// <para>Type=301 请求-好友添加</para>
 		/// </summary>
-		public static event EventHandler<FriendAddRequestEventArgs> ReceiveFriendAdd = (sender, e) => { };
+		public static event EventHandler<CqAddFriendRequestEventArgs> ReceiveFriendAdd = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventRequest_AddGroup
 		/// <para>Type=302 请求-群添加 - 申请入群</para>
 		/// </summary>
-		public static event EventHandler<GroupAddRequestEventArgs> ReceiveGroupAddApply = (sender, e) => { };
+		public static event EventHandler<CqAddGroupRequestEventArgs> ReceiveGroupAddApply = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventRequest_AddGroup
 		/// <para>Type=302 请求-群添加 - 被邀入群</para>
 		/// </summary>
-		public static event EventHandler<GroupAddRequestEventArgs> ReceiveGroupAddInvitee = (sender, e) => { };
+		public static event EventHandler<CqAddGroupRequestEventArgs> ReceiveGroupAddInvitee = (sender, e) => { };
 		#endregion
 
 		#region --导出方法--
@@ -337,11 +337,11 @@ namespace Native.Csharp.App.Core
 		[DllExport (ExportName = "_eventPrivateMsg", CallingConvention = CallingConvention.StdCall)]
 		private static int EventPrivateMsg (int subType, int msgId, long fromQQ, IntPtr msg, int font)
 		{
-			PrivateMessageEventArgs args = new PrivateMessageEventArgs ();
+			CqPrivateMessageEventArgs args = new CqPrivateMessageEventArgs ();
 			args.MsgId = msgId;
 			args.FromQQ = fromQQ;
-			args.Msg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
-			args.Handled = false;
+			args.Message= NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
+			args.Handler = false;
 
 			if (subType == 11)      // 来自好友
 			{
@@ -364,25 +364,24 @@ namespace Native.Csharp.App.Core
 				Common.CqApi.AddLoger (LogerLevel.Info, "Native提示", "EventPrivateMsg 方法发现新的消息类型");
 			}
 
-			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
+			return (int)(args.Handler ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
 		[DllExport (ExportName = "_eventGroupMsg", CallingConvention = CallingConvention.StdCall)]
 		private static int EventGroupMsg (int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, IntPtr msg, int font)
 		{
-			GroupMessageEventArgs args = new GroupMessageEventArgs ();
+			CqGroupMessageEventArgs args = new CqGroupMessageEventArgs ();
 			args.MsgId = msgId;
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
-			args.Msg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
+			args.Message = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
 			args.FromAnonymous = null;
-			args.IsAnonymousMsg = false;
-			args.Handled = false;
+			args.Handler = false;
+
 
 			if (fromQQ == 80000000 && !string.IsNullOrEmpty (fromAnonymous))
 			{
 				args.FromAnonymous = Common.CqApi.GetAnonymous (fromAnonymous); //获取匿名成员信息
-				args.IsAnonymousMsg = true;
 			}
 
 			if (subType == 1)   // 群消息
@@ -394,18 +393,18 @@ namespace Native.Csharp.App.Core
 				Common.CqApi.AddLoger (LogerLevel.Info, "Native提示", "EventGroupMsg 方法发现新的消息类型");
 			}
 
-			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
+			return (int)(args.Handler ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
 		[DllExport (ExportName = "_eventDiscussMsg", CallingConvention = CallingConvention.StdCall)]
 		private static int EventDiscussMsg (int subType, int msgId, long fromDiscuss, long fromQQ, IntPtr msg, int font)
 		{
-			DiscussMessageEventArgs args = new DiscussMessageEventArgs ();
+			CqDiscussMessageEventArgs args = new CqDiscussMessageEventArgs ();
 			args.MsgId = msgId;
 			args.FromDiscuss = fromDiscuss;
 			args.FromQQ = fromQQ;
-			args.Msg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
-			args.Handled = false;
+			args.Message = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
+			args.Handler = false;
 
 			if (subType == 1)   // 讨论组消息
 			{
@@ -416,29 +415,29 @@ namespace Native.Csharp.App.Core
 				Common.CqApi.AddLoger (LogerLevel.Info, "Native提示", "EventDiscussMsg 方法发现新的消息类型");
 			}
 
-			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
+			return (int)(args.Handler ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
 		[DllExport (ExportName = "_eventGroupUpload", CallingConvention = CallingConvention.StdCall)]
 		private static int EventGroupUpload (int subType, int sendTime, long fromGroup, long fromQQ, string file)
 		{
-			FileUploadMessageEventArgs args = new FileUploadMessageEventArgs ();
+            CqGroupFileUploadEventArgs args = new CqGroupFileUploadEventArgs ();
 			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
 			args.File = Common.CqApi.GetFile (file);
 			ReceiveFileUploadMessage (null, args);
-			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
+			return (int)(args.Handler ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
 		[DllExport (ExportName = "_eventSystem_GroupAdmin", CallingConvention = CallingConvention.StdCall)]
 		private static int EventSystemGroupAdmin (int subType, int sendTime, long fromGroup, long beingOperateQQ)
 		{
-			GroupManageAlterEventArgs args = new GroupManageAlterEventArgs ();
+            CqGroupManageChangeEventArgs args = new CqGroupManageChangeEventArgs ();
 			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromGroup = fromGroup;
 			args.BeingOperateQQ = beingOperateQQ;
-			args.Handled = false;
+			args.Handler = false;
 
 			if (subType == 1)       // 被取消管理员
 			{
@@ -453,18 +452,18 @@ namespace Native.Csharp.App.Core
 				Common.CqApi.AddLoger (LogerLevel.Info, "Native提示", "EventSystemGroupAdmin 方法发现新的消息类型");
 			}
 
-			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
+			return (int)(args.Handler ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
 		[DllExport (ExportName = "_eventSystem_GroupMemberDecrease", CallingConvention = CallingConvention.StdCall)]
 		private static int EventSystemGroupMemberDecrease (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)
 		{
-			GroupMemberAlterEventArgs args = new GroupMemberAlterEventArgs ();
+            CqGroupMemberDecreaseEventArgs args = new CqGroupMemberDecreaseEventArgs ();
 			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
 			args.BeingOperateQQ = beingOperateQQ;
-			args.Handled = false;
+			args.Handler = false;
 
 			if (subType == 1)       // 群员离开
 			{
@@ -480,18 +479,18 @@ namespace Native.Csharp.App.Core
 				Common.CqApi.AddLoger (LogerLevel.Info, "Native提示", "EventSystemGroupMemberDecrease 方法发现新的消息类型");
 			}
 
-			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
+			return (int)(args.Handler ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
 		[DllExport (ExportName = "_eventSystem_GroupMemberIncrease", CallingConvention = CallingConvention.StdCall)]
 		private static int EventSystemGroupMemberIncrease (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)
 		{
-			GroupMemberAlterEventArgs args = new GroupMemberAlterEventArgs ();
+            CqGroupMemberIncreaseEventArgs args = new CqGroupMemberIncreaseEventArgs ();
 			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
 			args.BeingOperateQQ = beingOperateQQ;
-			args.Handled = false;
+			args.Handler = false;
 
 			if (subType == 1)       // 管理员同意
 			{
@@ -506,16 +505,16 @@ namespace Native.Csharp.App.Core
 				Common.CqApi.AddLoger (LogerLevel.Info, "Native提示", "EventSystemGroupMemberIncrease 方法发现新的消息类型");
 			}
 
-			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
+			return (int)(args.Handler ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
 		[DllExport (ExportName = "_eventFriend_Add", CallingConvention = CallingConvention.StdCall)]
 		private static int EventFriendAdd (int subType, int sendTime, long fromQQ)
 		{
-			FriendIncreaseEventArgs args = new FriendIncreaseEventArgs ();
+			CqFriendIncreaseEventArgs args = new CqFriendIncreaseEventArgs ();
 			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromQQ = fromQQ;
-			args.Handled = false;
+			args.Handler = false;
 
 			if (subType == 1)   // 好友已添加
 			{
@@ -526,18 +525,18 @@ namespace Native.Csharp.App.Core
 				Common.CqApi.AddLoger (LogerLevel.Info, "Native提示", "EventFriendAdd 方法发现新的消息类型");
 			}
 
-			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
+			return (int)(args.Handler ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
 		[DllExport (ExportName = "_eventRequest_AddFriend", CallingConvention = CallingConvention.StdCall)]
 		private static int EventRequestAddFriend (int subType, int sendTime, long fromQQ, IntPtr msg, string responseFlag)
 		{
-			FriendAddRequestEventArgs args = new FriendAddRequestEventArgs ();
+            CqAddFriendRequestEventArgs args = new CqAddFriendRequestEventArgs ();
 			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromQQ = fromQQ;
-			args.AppendMsg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
-			args.Tag = responseFlag;
-			args.Handled = false;
+			args.Message = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
+			args.ResponseFlag = responseFlag;
+			args.Handler = false;
 
 			if (subType == 1)   // 好友添加请求
 			{
@@ -548,19 +547,19 @@ namespace Native.Csharp.App.Core
 				Common.CqApi.AddLoger (LogerLevel.Info, "Native提示", "EventRequestAddFriend 方法发现新的消息类型");
 			}
 
-			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
+			return (int)(args.Handler ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
 		[DllExport (ExportName = "_eventRequest_AddGroup", CallingConvention = CallingConvention.StdCall)]
 		private static int EventRequestAddGroup (int subType, int sendTime, long fromGroup, long fromQQ, IntPtr msg, string responseFlag)
 		{
-			GroupAddRequestEventArgs args = new GroupAddRequestEventArgs ();
+            CqAddGroupRequestEventArgs args = new CqAddGroupRequestEventArgs ();
 			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
-			args.AppendMsg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
-			args.Tag = responseFlag;
-			args.Handled = false;
+			args.Message = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
+			args.ResponseFlag = responseFlag;
+			args.Handler = false;
 
 			if (subType == 1)       // 申请加入群
 			{

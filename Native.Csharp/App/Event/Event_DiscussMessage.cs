@@ -1,5 +1,5 @@
-﻿using Native.Csharp.App.Interface;
-using Native.Csharp.App.Model;
+﻿using Native.Csharp.Sdk.Cqp.Interface;
+using Native.Csharp.Sdk.Cqp.EventArgs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,17 +17,17 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveDiscussMessage (object sender, DiscussMessageEventArgs e)
+		public void ReceiveDiscussMessage (object sender, CqDiscussMessageEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
             // 这里处理消息
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceiveDiscussMessage.lua",
                 new ArrayList() {
                     "fromqq", e.FromQQ,
                     "fromDiscuss",e.FromDiscuss,
-                    "message",e.Msg,
+                    "message",e.MsgId,
                     "id",e.MsgId,
                 });
 
@@ -40,17 +40,17 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveDiscussPrivateMessage (object sender, PrivateMessageEventArgs e)
+		public void ReceiveDiscussPrivateMessage (object sender, CqPrivateMessageEventArgs e)
 		{
             // 本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
             // 这里处理消息
 
-            e.Handled = LuaEnv.LuaEnv.RunLua(
+            e.Handler = LuaEnv.LuaEnv.RunLua(
                 "",
                 "envent/ReceivePrivateMessage.lua",
                 new ArrayList() {
                     "fromqq", e.FromQQ,
-                    "message",e.Msg,
+                    "message",e.MsgId,
                     "id",e.MsgId,
                 });
 

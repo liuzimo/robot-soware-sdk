@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Native.Csharp.App.Interface;
-using Native.Csharp.Sdk.Cqp;
+﻿
+using Native.Csharp.Sdk.Cqp.Interface;
+using System;
 
 namespace Native.Csharp.App.Event
 {
