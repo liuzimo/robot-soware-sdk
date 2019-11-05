@@ -182,7 +182,7 @@ namespace Native.Csharp.App.LuaEnv
                     CopyDirectory(dir, saveDirPath + "\\" + Path.GetFileName(dir));
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }

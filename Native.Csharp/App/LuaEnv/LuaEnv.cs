@@ -107,6 +107,8 @@ namespace Native.Csharp.App.LuaEnv
             /////////////
             lua.RegisterFunction("apiGetPath", null, typeof(LuaApi).GetMethod("GetPath"));
             //获取程序运行目录
+            lua.RegisterFunction("apiGetAppName", null, typeof(LuaApi).GetMethod("GetAppName"));
+            //获取插件包名
             lua.RegisterFunction("apiGetBitmap", null, typeof(LuaApi).GetMethod("GetBitmap"));
             //获取图片对象
             lua.RegisterFunction("apiPutText", null, typeof(LuaApi).GetMethod("PutText"));
@@ -163,6 +165,8 @@ namespace Native.Csharp.App.LuaEnv
             //连接tcp服务器
             lua.RegisterFunction("apiListenStart", null, typeof(HttpListenerPostParaHelper).GetMethod("ListenStart"));
             //开启httprequest监听
+            lua.RegisterFunction("apiGetResponseHeaders", null, typeof(LuaApi).GetMethod("GetResponseHeaders"));
+            //获取response header头
             lua.RegisterFunction("apiTimerStart", null, typeof(TimerRun).GetMethod("TimerStart"));
             //开启循环任务
             lua.RegisterFunction("apiGeneralBasic", null, typeof(BaiDuApi).GetMethod("GeneralBasic"));

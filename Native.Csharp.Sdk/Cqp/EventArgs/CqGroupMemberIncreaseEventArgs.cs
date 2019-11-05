@@ -59,7 +59,9 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			this.FromQQ = fromQQ;
 			this.BeingOperateQQ = operateQQ;
 		}
-
+        /// <summary>
+        /// 初始化 <see cref="CqGroupMemberIncreaseEventArgs"/> 类的一个新实例
+        /// </summary>
         public CqGroupMemberIncreaseEventArgs()
         {
         }

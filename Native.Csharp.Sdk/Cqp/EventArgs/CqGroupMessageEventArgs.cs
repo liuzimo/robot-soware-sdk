@@ -72,7 +72,9 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			this.FromAnonymous = anonymous;
 			this.Message = msg;
 		}
-
+        /// <summary>
+        /// 初始化 <see cref="CqGroupMessageEventArgs"/> 类的一个新实例
+        /// </summary>
         public CqGroupMessageEventArgs()
         {
         }

@@ -45,7 +45,9 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
             this.SendTime = sendTime;
             this.FromQQ = fromQQ;
         }
-
+        /// <summary>
+        /// 初始化 <see cref="CqFriendIncreaseEventArgs"/> 类的一个新实例
+        /// </summary>
         public CqFriendIncreaseEventArgs()
         {
         }

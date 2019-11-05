@@ -65,31 +65,47 @@ namespace Native.Csharp.App.Event
                 string gitPath = Common.AppDirectory;
                 if (Directory.Exists(gitPath + "lua\\"))
                     return;//已存在工程，不用再初始化了
-                Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Warning, "第一次启动的提示", "正在下载初始脚本，请稍后");
+
+                Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Warning, "启动提示", "正在下载初始脚本，请耐心等待，不要重启插件，以免造成不必要的麻烦");
                 try
                 {
                     Repository.Clone("https://github.com/liuzimo/robot-soware-lua.git", gitPath);
                     Tools.CopyDirectory(gitPath + "appdata\\lua\\", gitPath + "lua\\");
                     Tools.CopyDirectory(gitPath + "appdata\\xml\\", gitPath + "xml\\");
-
-                    string gPath = gitPath.Substring(0, gitPath.LastIndexOf("\\"));
-                    gPath = gPath.Substring(0, gPath.LastIndexOf("\\"));
-                    gPath = gPath.Substring(0, gPath.LastIndexOf("\\") + 1);
-                    Tools.CopyDirectory(gitPath + "appdata\\xml\\record\\", gPath + "record\\");
                 }
                 catch
                 {
-                    Common.CqApi.AddFatalError("lua插件警告：无法下载git项目，请检查网络然后重启酷Q！");
+                    Common.CqApi.AddFatalError("请手动删除 酷q/data/app/"+LuaApi.GetAppName()+" 文件夹 然后重启插件");
                     return;//clone失败，还原
                 }
                 
                 Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Warning,
                     "第一次启动的提示",
                     "初始脚本下载完成，可以使用了\r\n" +
-                    "请注意更改初始配置");
+                    "激活 私聊发送 我爱你");
+
+
+                Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Warning, "下载语音资源", "正在下载语音资源，请稍后，请不要重启插件，以免造成不必要的麻烦");
+                try
+                {
+                    Repository.Clone("https://github.com/liuzimo/robot-resources.git", gitPath+"resources\\");
+
+                    string gPath = gitPath.Substring(0, gitPath.LastIndexOf("\\"));
+                    gPath = gPath.Substring(0, gPath.LastIndexOf("\\"));
+                    gPath = gPath.Substring(0, gPath.LastIndexOf("\\") + 1);
+                    Tools.CopyDirectory(gitPath + "resources\\record\\", gPath + "record\\");
+                }
+                catch
+                {
+                    Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Warning, "语音资源下载失败","请手动删除 酷q/data/app/" + LuaApi.GetAppName() + "resources  文件夹 然后重启插件");
+                    return;//clone失败，还原
+                }
+
+                Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Warning,
+                    "下载语音资源",
+                    "语音资源下载完成");
 
             });
-
 
         }
 

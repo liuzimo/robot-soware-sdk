@@ -66,7 +66,9 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
             this.Message = message;
             this.ResponseFlag = flag;
         }
-
+        /// <summary>
+        /// 初始化 <see cref="CqAddGroupRequestEventArgs"/> 类的一个新实例
+        /// </summary>
         public CqAddGroupRequestEventArgs()
         {
         }

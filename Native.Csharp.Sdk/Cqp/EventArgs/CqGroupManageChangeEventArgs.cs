@@ -52,7 +52,9 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
             this.FromGroup = fromGroup;
             this.BeingOperateQQ = targetQQ;
         }
-
+        /// <summary>
+        /// 初始化 <see cref="CqGroupManageChangeEventArgs"/> 类的一个新实例
+        /// </summary>
         public CqGroupManageChangeEventArgs()
         {
         }

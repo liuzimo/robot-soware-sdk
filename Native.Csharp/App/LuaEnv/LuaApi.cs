@@ -1,7 +1,9 @@
 ﻿using Native.Csharp.Sdk.Cqp.Enum;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -11,6 +13,7 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace Native.Csharp.App.LuaEnv
 {
@@ -125,6 +128,15 @@ namespace Native.Csharp.App.LuaEnv
             return AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
         }
 
+        /// <summary>
+        /// 获取插件资源目录
+        /// </summary>
+        /// <returns>插件资源目录</returns>
+        public static string GetAppName()
+        {
+           string[] name = Common.AppDirectory.Split('\\');
+           return name[name.Length-2];
+        }
         /// <summary>
         /// 获取qq消息中图片的路径
         /// </summary>
@@ -334,13 +346,59 @@ namespace Native.Csharp.App.LuaEnv
             }
             return "";
         }
-
         /// <summary>
-        /// 获取本地图片的base64结果，会转成jpeg
+        /// 获取返回的header
         /// </summary>
-        /// <param name="url"></param>
-        /// <returns></returns>
-        public static string Base64File(string path)
+        /// 
+        public static string GetResponseHeaders(String url,string postdata="",string cookie="")
+        {
+            try
+            {
+                Dictionary<string, string> HeaderList = new Dictionary<string, string>();
+
+                WebRequest WebRequestObject = HttpWebRequest.Create(url);
+                //cookie
+                if (cookie != "")
+                    WebRequestObject.Headers.Add("cookie", cookie);
+                //post数据
+                if (postdata !="")
+                {
+                    //请求方式
+                    WebRequestObject.Method = "POST";
+                    byte[] byteResquest = Encoding.UTF8.GetBytes(postdata);
+                    WebRequestObject.ContentLength = byteResquest.Length;
+                    Stream stream = WebRequestObject.GetRequestStream();
+                    stream.Write(byteResquest, 0, byteResquest.Length);
+                    stream.Close();
+                }
+
+                //获取response header头
+                WebResponse ResponseObject = WebRequestObject.GetResponse();
+                foreach (string HeaderKey in ResponseObject.Headers)
+
+                    HeaderList.Add(HeaderKey, ResponseObject.Headers[HeaderKey]);
+
+                ResponseObject.Close();
+
+                //dict转换成json
+                string responseheaders = JsonConvert.SerializeObject(HeaderList);
+
+                return responseheaders;
+
+            }
+            catch (Exception e)
+            {
+                Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Error, "ResponseHeaders获取错误", e.ToString());
+            }
+            return "";
+        }
+
+/// <summary>
+/// 获取本地图片的base64结果，会转成jpeg
+/// </summary>
+/// <param name="url"></param>
+/// <returns></returns>
+public static string Base64File(string path)
         {
             return Convert.ToBase64String(System.IO.File.ReadAllBytes(path));
         }

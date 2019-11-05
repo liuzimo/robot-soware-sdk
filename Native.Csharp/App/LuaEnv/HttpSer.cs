@@ -88,7 +88,7 @@ namespace Native.Csharp.App.LuaEnv
                 }
                 return cleaned_data;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }

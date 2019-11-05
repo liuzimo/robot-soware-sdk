@@ -61,7 +61,9 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
             this.File = file;
             this.Handler = false;
         }
-
+        /// <summary>
+        /// 初始化 <see cref="CqGroupFileUploadEventArgs"/> 类的一个新实例
+        /// </summary>
         public CqGroupFileUploadEventArgs()
         {
         }

@@ -4,9 +4,9 @@
 {
 	"ret": 1, // 返回码，固定为1
 	"apiver": 9, // Api版本，本SDK为9
-	"name": "SOWARE测试版", // 应用名称
-	"version": "2.1.1", // 应用版本
-	"version_id": 3, // 应用顺序版本（每次发布时至少+1）
+	"name": "S群管修改版", // 应用名称
+	"version": "1.0.0", // 应用版本
+	"version_id": 1, // 应用顺序版本（每次发布时至少+1）
 	"author": "SpiritBoy", // 应用作者
 	"description": "",
 	"event": [ // 事件列表，同一事件类型可重复定义（发布前请删除无用事件）
@@ -124,7 +124,7 @@
 		101, //发送群消息			sendGroupMsg
 		103, //发送讨论组消息		sendDiscussMsg
 		106, //发送私聊消息		sendPrivateMsg
-		110, //发送赞				sendLike
+		//110, //发送赞				sendLike
 		120, //置群员移除			setGroupKick
 		121, //置群员禁言			setGroupBan
 		122, //置群管理员			setGroupAdmin
