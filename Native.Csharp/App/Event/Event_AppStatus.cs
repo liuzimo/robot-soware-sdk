@@ -69,7 +69,7 @@ namespace Native.Csharp.App.Event
                 Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Warning, "启动提示", "正在下载初始脚本，请耐心等待，不要重启插件，以免造成不必要的麻烦");
                 try
                 {
-                    Repository.Clone("https://github.com/liuzimo/robot-soware-lua.git", gitPath);
+                    Repository.Clone("https://gitee.com/spiritboy/robot-soware-lua.git", gitPath);
                     Tools.CopyDirectory(gitPath + "appdata\\lua\\", gitPath + "lua\\");
                     Tools.CopyDirectory(gitPath + "appdata\\xml\\", gitPath + "xml\\");
                 }
@@ -88,7 +88,7 @@ namespace Native.Csharp.App.Event
                 Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Warning, "下载语音资源", "正在下载语音资源，请稍后，请不要重启插件，以免造成不必要的麻烦");
                 try
                 {
-                    Repository.Clone("https://github.com/liuzimo/robot-resources.git", gitPath+"resources\\");
+                    Repository.Clone("https://gitee.com/spiritboy/robot-resources.git", gitPath+"resources\\");
 
                     string gPath = gitPath.Substring(0, gitPath.LastIndexOf("\\"));
                     gPath = gPath.Substring(0, gPath.LastIndexOf("\\"));
